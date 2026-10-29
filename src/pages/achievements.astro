@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { achievements } from '../data/achievements';
+import { siteMeta } from '../data/siteMeta';
+---
+
+<BaseLayout
+  title={`Achievements — ${siteMeta.name}`}
+  description="Timeline of hackathons, engineering competitions, and academic milestones."
+>
+  <header class="page-header">
+    <h1 class="page-title">Achievements</h1>
+    <p class="page-subtitle">
+      Hackathon awards, hardware prototyping competitions, and academic honors.
+    </p>
+  </header>
+
+  <div class="divider"></div>
+
+  <section class="timeline-container" aria-label="Achievements Timeline">
+    <ol class="timeline-list">
+      {achievements.map((item) => (
+        <li class="timeline-entry">
+          <div class="entry-header">
+            <div class="title-group">
+              <h2 class="event-title">{item.event}</h2>
+              <span class="result-badge">{item.result}</span>
+            </div>
+            <time class="entry-date">{item.date}</time>
+          </div>
+
+          <p class="entry-desc">{item.description}</p>
+
+          {item.link && (
+            <div class="link-wrap">
+              <a href={item.link} target="_blank" rel="noopener noreferrer" class="cert-link">
+                {item.link.includes('certificate') ? 'View Certificate' : 'View Project Record'} <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          )}
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="add-note">
+    <p class="note-text">
+      This page is driven by a single data file (<code>src/data/achievements.ts</code>). Adding a new hackathon result or certificate requires only appending one typed entry to the list.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header, .timeline-container, .add-note {
+    max-width: var(--max-w);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .timeline-container {
+    margin-top: 0.5rem;
+  }
+
+  .timeline-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .timeline-entry {
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .timeline-entry:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .title-group {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .event-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .result-badge {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .entry-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .entry-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-link {
+    font-size: 0.88rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .cert-link:hover {
+    text-decoration: underline;
+  }
+
+  .arrow {
+    display: inline-block;
+    font-size: 0.85em;
+  }
+
+  .add-note {
+    margin-top: 1rem;
+  }
+
+  .note-text {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 580px) {
+    .entry-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  }
+</style>

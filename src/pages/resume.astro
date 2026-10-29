@@ -1,0 +1,517 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteMeta } from '../data/siteMeta';
+import { achievements } from '../data/achievements';
+---
+
+<BaseLayout
+  title={`Resume — ${siteMeta.name}`}
+  description={`Curriculum vitae and technical experience summary for ${siteMeta.name}, EEE Undergraduate.`}
+>
+  <header class="page-header">
+    <div class="header-top">
+      <div>
+        <h1 class="page-title">Resume</h1>
+        <p class="page-subtitle">Curriculum vitae & technical credentials.</p>
+      </div>
+      <a href="/resume.pdf" download="Mohnish-Krishna-S-Resume.pdf" class="btn btn-primary download-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download PDF</span>
+      </a>
+    </div>
+    <div class="resume-view-controls">
+      <div class="view-switch-group" role="tablist" aria-label="Resume View Modes">
+        <button type="button" id="btn-view-doc" class="view-btn active" role="tab" aria-selected="true" aria-controls="doc-view">
+          Structured Document
+        </button>
+        <button type="button" id="btn-view-pdf" class="view-btn" role="tab" aria-selected="false" aria-controls="pdf-view">
+          Embedded PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- Embedded PDF Viewer Panel -->
+  <div id="pdf-view" class="pdf-view-panel" style="display: none;" role="tabpanel" aria-label="Embedded PDF Resume">
+    <object
+      data="/resume.pdf"
+      type="application/pdf"
+      class="pdf-object"
+      aria-label="Mohnish Krishna S Resume PDF"
+    >
+      <div class="pdf-fallback-msg">
+        <p>Your browser does not support embedded PDF viewing.</p>
+        <a href="/resume.pdf" download="Mohnish-Krishna-S-Resume.pdf" class="btn btn-primary">
+          Download Resume PDF
+        </a>
+      </div>
+    </object>
+  </div>
+
+  <!-- Inline Resume Document -->
+  <article id="doc-view" class="resume-sheet" role="tabpanel" aria-label="Structured Document Resume">
+    <!-- Contact & Objective Header -->
+    <section class="resume-hero">
+      <h2 class="resume-name">{siteMeta.name}</h2>
+      <p class="resume-role">{siteMeta.tagline}</p>
+      <div class="resume-meta-links">
+        <span>{siteMeta.location}</span>
+        <span class="sep">•</span>
+        <a href={`mailto:${siteMeta.email}`}>{siteMeta.email}</a>
+        <span class="sep">•</span>
+        <a href={siteMeta.github} target="_blank" rel="noopener noreferrer">github.com/krishquanta</a>
+        <span class="sep">•</span>
+        <a href={siteMeta.linkedin} target="_blank" rel="noopener noreferrer">linkedin.com/in/krishquanta</a>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="resume-block">
+      <h3 class="resume-section-heading">Education</h3>
+      <div class="resume-item">
+        <div class="item-header">
+          <div>
+            <strong class="item-title">Bachelor of Engineering (B.E.) in Electrical & Electronics Engineering</strong>
+            <div class="item-subtitle">{siteMeta.college}</div>
+          </div>
+          <span class="item-date">2026 – 2030</span>
+        </div>
+        <p class="item-desc">
+          <strong>Status:</strong> First Year Undergraduate &nbsp;|&nbsp; 
+          <strong>Relevant Coursework:</strong> Engineering Circuit Analysis, Linear Algebra & Calculus, Introduction to Programming (C/Python), Engineering Physics & Electronics, Electrical Measurement Laboratory.
+        </p>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-header">
+          <div>
+            <strong class="item-title">Higher Secondary Certificate (12th Standard)</strong>
+            <div class="item-subtitle">Tamil Nadu State Board / Matriculation Higher Secondary</div>
+          </div>
+          <span class="item-date">2026</span>
+        </div>
+        <p class="item-desc">
+          <strong>Score:</strong> 80% &nbsp;|&nbsp; <strong>Focus:</strong> Physics, Chemistry, Mathematics, Computer Science.
+        </p>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-header">
+          <div>
+            <strong class="item-title">Secondary School Examination (10th Standard)</strong>
+            <div class="item-subtitle">Tamil Nadu Matriculation</div>
+          </div>
+          <span class="item-date">2024</span>
+        </div>
+        <p class="item-desc">
+          <strong>Score:</strong> 94.8% &nbsp;|&nbsp; <strong>Focus:</strong> Mathematics, Science, Social Science, English, Tamil.
+        </p>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section class="resume-block">
+      <h3 class="resume-section-heading">Technical Skills</h3>
+      <ul class="skill-summary-list">
+        <li>
+          <strong>Programming Languages:</strong> C (C99/C11), C++ (C++17/20), Python (FastAPI, Asyncio), TypeScript, SQL, Bash.
+        </li>
+        <li>
+          <strong>Hardware & Embedded:</strong> ESP32, Arduino, FreeRTOS, I2C, SPI, UART, ADC signal conditioning, KiCad (Schematics & PCB), Tinkercad, Digital Oscilloscopes, Logic Analyzers.
+        </li>
+        <li>
+          <strong>Systems & Software Tools:</strong> Linux, Docker, Docker Compose, Git, Celery, Redis, PostgreSQL, SQLite (VSS), Win32 API, Valgrind, GDB.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="resume-block">
+      <h3 class="resume-section-heading">Featured Technical Projects</h3>
+
+      <div class="resume-item">
+        <div class="item-header">
+          <strong class="item-title">
+            <a href="/projects/shop-cold-outreach">Shop Cold Outreach</a> — Lead Aggregation & Dispatch Pipeline
+          </strong>
+          <span class="item-date">2026</span>
+        </div>
+        <div class="item-tech">Python, FastAPI, Docker, Celery, Redis, PostgreSQL</div>
+        <ul class="item-bullets">
+          <li>Architected a containerized lead aggregation service extracting and normalizing multi-source vendor records into PostgreSQL.</li>
+          <li>Engineered token-bucket rate-limiting using Celery and Redis to throttle gateway dispatch, eliminating upstream 429 errors across 10,000+ dispatches.</li>
+          <li>Containerized complete stack with Docker Compose and private bridge network isolation for robust local deployment.</li>
+        </ul>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-header">
+          <strong class="item-title">
+            <a href="/projects/bluelink-ai">BlueLink AI</a> — OBD-II Telematics & Diagnostic Reasoning Engine
+          </strong>
+          <span class="item-date">2026</span>
+        </div>
+        <div class="item-tech">Python, PyTorch, FastAPI, ChromaDB, OBD-II PID Parser</div>
+        <ul class="item-bullets">
+          <li>Engineered an SAE J1979 OBD-II telemetry parser translating raw PID hex sensor streams (fuel trim, RPM, coolant temp) into structured metrics.</li>
+          <li>Integrated retrieval-augmented generation (RAG) over manufacturer workshop manuals, achieving sub-120ms cached response times for fault localization.</li>
+          <li>Constructed physical boundary sanity checks preventing hallucinated diagnostics for critical trouble codes.</li>
+        </ul>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-header">
+          <strong class="item-title">
+            <a href="/projects/iot-power-monitor">IoT Power & Energy Telemetry Node</a> — Microcontroller Hardware System
+          </strong>
+          <span class="item-date">2026</span>
+        </div>
+        <div class="item-tech">Embedded C++, ESP32, FreeRTOS, KiCad, Allegro ACS712, ZMPT101B, MQTT</div>
+        <ul class="item-bullets">
+          <li>Designed a galvanically isolated 230V AC energy metering circuit incorporating Hall-effect current sensors and voltage potential transformers.</li>
+          <li>Wrote FreeRTOS dual-core firmware on ESP32 executing 2.5 kHz hardware timer ADC interrupts for continuous True-RMS computation.</li>
+          <li>Implemented polynomial calibration correcting internal ADC non-linearities, driving total measurement error below 1.2%.</li>
+        </ul>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-header">
+          <strong class="item-title">
+            <a href="/projects/humanesque-typer">Humanesque Typer</a> — Windows Input Injection Engine
+          </strong>
+          <span class="item-date">2025</span>
+        </div>
+        <div class="item-tech">C++, Win32 API, High-Resolution Multimedia Timers, Stochastic Modeling</div>
+        <ul class="item-bullets">
+          <li>Engineered low-level Windows User32 input simulator dispatching hardware scan codes via `SendInput` with sub-millisecond precision.</li>
+          <li>Implemented log-normal latency distributions and digraph cognitive pause modeling to replicate natural human cadence for test suites.</li>
+        </ul>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-header">
+          <strong class="item-title">
+            <a href="/projects/krish-c-projects">Krish C Projects</a> — Memory Allocator & Systems Suite
+          </strong>
+          <span class="item-date">2024</span>
+        </div>
+        <div class="item-tech">C99, POSIX, Memory Management, Valgrind, AddressSanitizer</div>
+        <ul class="item-bullets">
+          <li>Implemented explicit free-list heap allocator (`malloc`/`free`) with boundary tagging, 8-byte alignment, and adjacent block coalescing.</li>
+          <li>Constructed Robin Hood hash table with open addressing, yielding 2.4x query speedup over chained hashing via CPU cache line optimization.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Achievements & Awards Section -->
+    <section class="resume-block">
+      <h3 class="resume-section-heading">Honors & Competitions</h3>
+      <ul class="resume-achievements-list">
+        {achievements.map((item) => (
+          <li>
+            <strong>{item.event} — {item.result} ({item.date}):</strong> {item.description}
+            {item.link && item.link.includes('certificate') && (
+              <span> (<a href={item.link} target="_blank" rel="noopener noreferrer">Certificate</a>)</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-header, .resume-sheet, .pdf-view-panel {
+    max-width: var(--max-w);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+  }
+
+  .download-btn {
+    flex-shrink: 0;
+  }
+
+  .resume-sheet {
+    background: transparent;
+    padding: 0.5rem 0;
+  }
+
+  .resume-hero {
+    margin-bottom: 2rem;
+  }
+
+  .resume-name {
+    font-size: 1.85rem;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .resume-role {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .resume-meta-links {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .resume-meta-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .resume-meta-links a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .sep {
+    color: var(--border);
+  }
+
+  .resume-block {
+    margin-bottom: 2rem;
+  }
+
+  .resume-section-heading {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .resume-item {
+    margin-bottom: 1.35rem;
+  }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .item-title {
+    font-size: 1.02rem;
+    color: var(--text);
+  }
+
+  .item-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .item-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .item-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .item-date {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .item-tech {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .item-desc {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  .item-bullets {
+    margin: 0.4rem 0 0 1.25rem;
+    padding: 0;
+  }
+
+  .item-bullets li {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 0.3rem;
+  }
+
+  .skill-summary-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .skill-summary-list li {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .resume-achievements-list {
+    margin: 0 0 0 1.25rem;
+    padding: 0;
+  }
+
+  .resume-achievements-list li {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 600px) {
+    .header-top {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .download-btn {
+      align-self: flex-start;
+    }
+
+    .item-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+    }
+  }
+
+  /* View switch controls */
+  .resume-view-controls {
+    margin-top: 1.25rem;
+  }
+
+  .view-switch-group {
+    display: inline-flex;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .view-btn {
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .view-btn:hover {
+    color: var(--text);
+  }
+
+  .view-btn.active {
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Embedded PDF panel */
+  .pdf-view-panel {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .pdf-object {
+    width: 100%;
+    height: 780px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background-color: var(--bg-subtle);
+  }
+
+  .pdf-fallback-msg {
+    padding: 2.5rem;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .pdf-fallback-msg p {
+    margin-bottom: 1rem;
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    const btnDoc = document.getElementById('btn-view-doc');
+    const btnPdf = document.getElementById('btn-view-pdf');
+    const docView = document.getElementById('doc-view');
+    const pdfView = document.getElementById('pdf-view');
+
+    if (btnDoc && btnPdf && docView && pdfView) {
+      btnDoc.addEventListener('click', () => {
+        btnDoc.classList.add('active');
+        btnDoc.setAttribute('aria-selected', 'true');
+        btnPdf.classList.remove('active');
+        btnPdf.setAttribute('aria-selected', 'false');
+        docView.style.display = 'block';
+        pdfView.style.display = 'none';
+      });
+
+      btnPdf.addEventListener('click', () => {
+        btnPdf.classList.add('active');
+        btnPdf.setAttribute('aria-selected', 'true');
+        btnDoc.classList.remove('active');
+        btnDoc.setAttribute('aria-selected', 'false');
+        pdfView.style.display = 'block';
+        docView.style.display = 'none';
+      });
+    }
+  })();
+</script>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="avatar-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F2ED" />
+      <stop offset="100%" stop-color="#E5E5DE" />
+    </linearGradient>
+    <linearGradient id="skin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D9A07A" />
+      <stop offset="100%" stop-color="#C58963" />
+    </linearGradient>
+    <linearGradient id="hair" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#222220" />
+      <stop offset="100%" stop-color="#141413" />
+    </linearGradient>
+    <linearGradient id="shirt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B3C48" />
+      <stop offset="100%" stop-color="#122830" />
+    </linearGradient>
+    <filter id="subtle-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#181816" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="400" height="400" rx="32" fill="url(#avatar-bg)" />
+  <rect width="398" height="398" x="1" y="1" rx="31" fill="none" stroke="#DEDECF" stroke-width="1.5" />
+
+  <!-- Inner Portrait Clip Area -->
+  <g clip-path="url(#avatar-clip)">
+    <clipPath id="avatar-clip">
+      <rect width="376" height="376" x="12" y="12" rx="24" />
+    </clipPath>
+
+    <!-- Subtle Background Pattern / Studio Atmosphere -->
+    <circle cx="200" cy="180" r="160" fill="#E8E8E0" opacity="0.6" />
+    <circle cx="200" cy="180" r="120" fill="#E2E2D8" opacity="0.5" />
+
+    <!-- Shoulders & Torso -->
+    <path d="M70 410 C 90 320, 140 280, 200 280 C 260 280, 310 320, 330 410 Z" fill="url(#shirt)" filter="url(#subtle-shadow)" />
+
+    <!-- Collar / Shirt Neckline -->
+    <path d="M175 280 L200 320 L225 280 Z" fill="#FAFAF8" opacity="0.9" />
+
+    <!-- Neck -->
+    <path d="M176 210 L176 285 L224 285 L224 210 Z" fill="url(#skin)" />
+    <!-- Neck shadow under chin -->
+    <path d="M176 220 C 188 238, 212 238, 224 220 Z" fill="#B37854" opacity="0.4" />
+
+    <!-- Head / Jaw Shape -->
+    <path d="M142 165 C 142 245, 170 255, 200 255 C 230 255, 258 245, 258 165 C 258 105, 240 85, 200 85 C 160 85, 142 105, 142 165 Z" fill="url(#skin)" filter="url(#subtle-shadow)" />
+
+    <!-- Ears -->
+    <ellipse cx="140" cy="175" rx="10" ry="16" fill="url(#skin)" />
+    <ellipse cx="260" cy="175" rx="10" ry="16" fill="url(#skin)" />
+
+    <!-- Hair Silhouette -->
+    <path d="M136 150 C 132 100, 160 65, 200 65 C 242 65, 268 95, 264 150 C 255 140, 248 135, 230 135 C 205 135, 190 142, 170 138 C 152 135, 142 142, 136 150 Z" fill="url(#hair)" />
+
+    <!-- Eyebrows -->
+    <path d="M162 152 Q176 148 188 152" stroke="#1D1D1C" stroke-width="3" stroke-linecap="round" fill="none" />
+    <path d="M212 152 Q224 148 238 152" stroke="#1D1D1C" stroke-width="3" stroke-linecap="round" fill="none" />
+
+    <!-- Eyes (minimal clean dots/almonds) -->
+    <ellipse cx="175" cy="165" rx="4" ry="4.5" fill="#181816" />
+    <ellipse cx="225" cy="165" rx="4" ry="4.5" fill="#181816" />
+
+    <!-- Glasses (refined wire-frame look, classic engineering vibe) -->
+    <rect x="156" y="152" width="36" height="26" rx="8" fill="none" stroke="#1B3C48" stroke-width="2.2" opacity="0.85" />
+    <rect x="208" y="152" width="36" height="26" rx="8" fill="none" stroke="#1B3C48" stroke-width="2.2" opacity="0.85" />
+    <!-- Glasses bridge & temples -->
+    <path d="M192 163 L208 163" stroke="#1B3C48" stroke-width="2.2" stroke-linecap="round" opacity="0.85" />
+    <path d="M156 162 L140 160" stroke="#1B3C48" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+    <path d="M244 162 L260 160" stroke="#1B3C48" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+
+    <!-- Nose -->
+    <path d="M200 165 L197 186 L205 186" fill="none" stroke="#B37854" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Gentle Confident Smile -->
+    <path d="M185 208 Q200 218 215 208" fill="none" stroke="#874B2F" stroke-width="2.4" stroke-linecap="round" />
+
+    <!-- Monogram Pill at bottom right -->
+    <g transform="translate(290, 316)">
+      <rect width="66" height="28" rx="6" fill="#181816" opacity="0.9" />
+      <text x="33" y="18" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#FAFAF8" text-anchor="middle" letter-spacing="1">EEE '30</text>
+    </g>
+  </g>
+</svg>

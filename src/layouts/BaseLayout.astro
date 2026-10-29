@@ -1,0 +1,58 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { siteMeta } from '../data/siteMeta';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = siteMeta.title,
+  description = siteMeta.tagline,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Theme inline check to prevent flash -->
+    <script is:inline>
+      try {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (stored === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          // Keep light as default per design specs (#FAFAF8), but can respect user preference if set
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <Header currentPath={Astro.url.pathname} />
+    <main id="main-content" class="site-container-wide page-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .page-content {
+    flex: 1;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  year: string;
+  tags: string[];
+}
+
+const { slug, title, description, category, year, tags } = Astro.props;
+---
+
+<article class="project-row" data-category={category}>
+  <a href={`/projects/${slug}`} class="project-link">
+    <div class="row-header">
+      <div class="title-wrap">
+        <h3 class="project-title">{title}</h3>
+        <span class="project-category">{category}</span>
+      </div>
+      <span class="project-year">{year}</span>
+    </div>
+    <p class="project-desc">{description}</p>
+    <div class="project-tags">
+      {tags.map((tag) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+  </a>
+</article>
+
+<style>
+  .project-row {
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1.25rem 0;
+    transition: background-color 0.15s ease;
+  }
+
+  .project-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.25rem 0;
+  }
+
+  .project-link:hover .project-title {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
+
+  .row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.35rem;
+    gap: 1rem;
+  }
+
+  .title-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .project-category {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .project-year {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .project-desc {
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.5;
+    margin-bottom: 0.65rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  @media (max-width: 550px) {
+    .row-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+    }
+  }
+</style>

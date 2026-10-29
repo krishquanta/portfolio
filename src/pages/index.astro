@@ -1,0 +1,1027 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { siteMeta } from '../data/siteMeta';
+import { achievements } from '../data/achievements';
+
+// Retrieve all projects and get the 3 selected featured projects
+const allProjects = await getCollection('projects');
+const selectedProjects = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .slice(0, 3);
+
+// Latest 3 achievements for the home page
+const recentAchievements = achievements.slice(0, 3);
+---
+
+<BaseLayout
+  title={siteMeta.title}
+  description={siteMeta.tagline}
+>
+  <!-- Hero Section (allowed slightly wider than content column) -->
+  <section class="hero-section" aria-label="Introduction">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-name">{siteMeta.name}</h1>
+        <p class="hero-tagline">{siteMeta.tagline}</p>
+        <p class="hero-intro">
+          First-year Electrical and Electronics Engineering undergraduate exploring the boundary where circuit hardware meets dependable software. Focusing on microcontroller firmware, sensor networks, and automation.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/resume" class="btn btn-primary hero-btn">
+            View resume
+          </a>
+          <a href="#contact" class="btn hero-btn">
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <img
+          src="/images/headshot.jpg"
+          alt="Mohnish Krishna S"
+          class="hero-photo-img"
+          width="190"
+          height="190"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- 01 — About Section -->
+  <section id="about" class="page-section" aria-label="About">
+    <span class="section-label">01 — About</span>
+    
+    <div class="about-grid">
+      <div class="about-narrative">
+        <p>
+          I'm a first-year student studying Electrical and Electronics Engineering (EEE) in Chennai. I'm drawn to systems where code translates into physical action — whether that's measuring AC power across an analog sensor or automating repetitive workflows with distributed pipelines.
+        </p>
+        <p>
+          I got started experimenting with breadboard circuits, observing how resistor networks behave under KVL/KCL, and programming Arduinos to read temperature and current sensors. Building simulated circuits in Tinkercad helped me verify schematics before breadboarding, while writing Python and C gave me the tools to build custom utilities that solve practical headaches.
+        </p>
+        <p>
+          My goal is to develop deep expertise across embedded systems, IoT telemetry, and industrial automation. I believe in learning fundamentals thoroughly: reading datasheets, analyzing waveforms with oscilloscopes, and writing lean, deterministic code.
+        </p>
+      </div>
+
+      <aside class="quick-facts" aria-label="Quick facts">
+        <h2 class="facts-title">Quick facts</h2>
+        <dl class="facts-list">
+          <div class="fact-item">
+            <dt>Location</dt>
+            <dd>{siteMeta.location}</dd>
+          </div>
+          <div class="fact-item">
+            <dt>College</dt>
+            <dd>{siteMeta.college}</dd>
+          </div>
+          <div class="fact-item">
+            <dt>Degree</dt>
+            <dd>{siteMeta.degree}</dd>
+          </div>
+          <div class="fact-item">
+            <dt>Expected Graduation</dt>
+            <dd>2030</dd>
+          </div>
+          <div class="fact-item">
+            <dt>Status</dt>
+            <dd class="fact-highlight">Open to internships</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- 02 — Skills Section -->
+  <section id="skills" class="page-section" aria-label="Skills">
+    <span class="section-label">02 — Skills</span>
+    <h2 class="section-heading">Technical Competencies</h2>
+
+    <div class="skills-columns">
+      <!-- Column 1: Electronics -->
+      <div class="skill-column">
+        <h3 class="skill-cat-title">Electronics</h3>
+        <ul class="skill-plain-list">
+          <li>Circuit analysis</li>
+          <li>KVL / KCL laws</li>
+          <li>Arduino &amp; ATmega</li>
+          <li>Tinkercad simulation</li>
+          <li>Sensors (current, temp, ADC)</li>
+          <li>Breadboard prototyping</li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Programming -->
+      <div class="skill-column">
+        <h3 class="skill-cat-title">Programming</h3>
+        <ul class="skill-plain-list">
+          <li>Python</li>
+          <li>C</li>
+          <li>C++</li>
+          <li>Bash</li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Tools -->
+      <div class="skill-column">
+        <h3 class="skill-cat-title">Tools</h3>
+        <ul class="skill-plain-list">
+          <li>Git</li>
+          <li>Docker</li>
+          <li>Linux</li>
+          <li>Playwright</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- 03 — Education Section -->
+  <section id="education" class="page-section" aria-label="Education">
+    <span class="section-label">03 — Education</span>
+    <h2 class="section-heading">Academic Background</h2>
+
+    <div class="education-timeline">
+      <!-- College -->
+      <div class="edu-row">
+        <div class="edu-top">
+          <div class="edu-degree-group">
+            <h3 class="edu-degree">Bachelor of Engineering (B.E.) in Electrical &amp; Electronics Engineering</h3>
+            <span class="edu-school">{siteMeta.college}</span>
+          </div>
+          <time class="edu-period">2026 – 2030</time>
+        </div>
+        <div class="edu-meta-tag">
+          <span class="tag">First Year · Expected Graduation: 2030</span>
+        </div>
+      </div>
+
+      <!-- 12th Grade -->
+      <div class="edu-row">
+        <div class="edu-top">
+          <div class="edu-degree-group">
+            <h3 class="edu-degree">Higher Secondary Certificate (12th Standard)</h3>
+            <span class="edu-school">Tamil Nadu State Board / Matriculation Higher Secondary</span>
+          </div>
+          <time class="edu-period">2026</time>
+        </div>
+        <div class="edu-meta-tag">
+          <span class="score-badge">Score: 80%</span>
+        </div>
+      </div>
+
+      <!-- 10th Grade -->
+      <div class="edu-row">
+        <div class="edu-top">
+          <div class="edu-degree-group">
+            <h3 class="edu-degree">Secondary School Examination (10th Standard)</h3>
+            <span class="edu-school">Tamil Nadu Matriculation</span>
+          </div>
+          <time class="edu-period">2024</time>
+        </div>
+        <div class="edu-meta-tag">
+          <span class="score-badge">Score: 94.8%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coursework List -->
+    <div class="coursework-block">
+      <h3 class="coursework-title">Current Coursework</h3>
+      <ul class="coursework-tags">
+        <li>Engineering Circuit Analysis</li>
+        <li>Linear Algebra &amp; Calculus</li>
+        <li>Introduction to Programming (C/Python)</li>
+        <li>Engineering Physics &amp; Electronics</li>
+        <li>Electrical Measurement Laboratory</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- 04 — Currently Learning Section -->
+  <section id="learning" class="page-section" aria-label="Currently Learning">
+    <span class="section-label">04 — Currently Learning</span>
+    <h2 class="section-heading">What I'm Studying &amp; Building This Semester</h2>
+    <p class="learning-intro">
+      Signals direction for an early undergraduate; keeps the engineering compass clear and updated every few months:
+    </p>
+
+    <ul class="learning-list">
+      <li class="learning-item">
+        <strong>Circuit Analysis:</strong>
+        <span>Analyzing DC and AC networks with KVL, KCL, Thevenin/Norton equivalents, and first-order RC/RL transient response.</span>
+      </li>
+      <li class="learning-item">
+        <strong>C Programming &amp; Systems:</strong>
+        <span>Investigating pointer arithmetic, stack vs. heap allocation, struct byte alignment and padding, and low-level memory operations.</span>
+      </li>
+      <li class="learning-item">
+        <strong>Breadboard Prototyping &amp; Tinkercad:</strong>
+        <span>Simulating sensor front-ends (thermistors, LDRs, op-amp comparators) in Tinkercad before wiring physical circuits and Arduino GPIO.</span>
+      </li>
+      <li class="learning-item">
+        <strong>Web Automation Pipelines:</strong>
+        <span>Building resilient browser automation and extraction scripts with Python, Playwright headless drivers, and task queue scheduling.</span>
+      </li>
+    </ul>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- 05 — Selected Work Section -->
+  <section id="work" class="page-section" aria-label="Selected Work">
+    <div class="section-header-row">
+      <div>
+        <span class="section-label">05 — Selected Work</span>
+        <h2 class="section-heading no-margin">Selected Projects</h2>
+      </div>
+      <a href="/projects" class="section-view-all">
+        View all projects →
+      </a>
+    </div>
+
+    <div class="selected-projects-list">
+      {selectedProjects.map((proj) => {
+        const slug = proj.id.replace(/\.md$/, '');
+        const isHardware = proj.data.category === 'Hardware';
+        return (
+          <a href={`/projects/${slug}`} class="compact-card project-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <h3 class="card-title">{proj.data.title}</h3>
+                {isHardware && (
+                  <span class="schematic-pill" title="Includes Tinkercad simulated circuit schematic">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
+                      <line x1="6" y1="12" x2="18" y2="12"></line>
+                      <line x1="12" y1="6" x2="12" y2="18"></line>
+                    </svg>
+                    Tinkercad Circuit
+                  </span>
+                )}
+              </div>
+              <span class="card-category">{proj.data.category}</span>
+            </div>
+            <p class="card-desc">{proj.data.description}</p>
+            <div class="tag-list">
+              {proj.data.tags.slice(0, 5).map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- 06 — Achievements Section -->
+  <section id="achievements" class="page-section" aria-label="Achievements">
+    <div class="section-header-row">
+      <div>
+        <span class="section-label">06 — Achievements</span>
+        <h2 class="section-heading no-margin">Recent Milestones</h2>
+      </div>
+      <a href="/achievements" class="section-view-all">
+        View all →
+      </a>
+    </div>
+
+    <div class="achievements-list">
+      {recentAchievements.map((item) => (
+        <article class="compact-card achievement-card">
+          <div class="achieve-header">
+            <div class="achieve-title-wrap">
+              <h3 class="achieve-title">{item.event}</h3>
+              <span class="achieve-badge">{item.result}</span>
+            </div>
+            <time class="achieve-date">{item.date}</time>
+          </div>
+          <p class="achieve-desc">{item.description}</p>
+          {item.link && (
+            <div class="achieve-link-wrap">
+              <a href={item.link} target="_blank" rel="noopener noreferrer" class="cert-link">
+                {item.link.includes('certificate') ? 'View Certificate' : 'View Project Record'} <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- 07 — Contact Section (clean, unboxed list — no cards behind everything) -->
+  <section id="contact" class="page-section contact-section" aria-label="Contact">
+    <span class="section-label">07 — Contact</span>
+    <h2 class="section-heading">Get in Touch</h2>
+    <p class="contact-lead">
+      Feel free to reach out for internship opportunities, hardware projects, or technical questions:
+    </p>
+
+    <div class="contact-channels-list">
+      <div class="contact-row">
+        <span class="channel-label">Email</span>
+        <div class="channel-main">
+          <a href={`mailto:${siteMeta.email}`} class="channel-anchor">
+            {siteMeta.email}
+          </a>
+          <button id="copy-email-btn" class="btn btn-copy" type="button" aria-label="Copy email address">
+            <span id="copy-email-text">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <span class="channel-label">LinkedIn</span>
+        <div class="channel-main">
+          <a href={siteMeta.linkedin} target="_blank" rel="noopener noreferrer" class="channel-anchor">
+            linkedin.com/in/krishquanta <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <span class="channel-label">GitHub</span>
+        <div class="channel-main">
+          <a href={siteMeta.github} target="_blank" rel="noopener noreferrer" class="channel-anchor">
+            github.com/krishquanta <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Styles (Allowed slightly wider than content column) */
+  .hero-section {
+    max-width: var(--max-w-hero, 820px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2.75rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-name {
+    font-size: 2.9rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.65rem;
+    color: var(--text);
+  }
+
+  .hero-tagline {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .hero-intro {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+    max-width: 530px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-btn {
+    padding: 0.55rem 1.15rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .hero-photo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-photo-img,
+  .hero-photo {
+    width: 190px;
+    height: 190px;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-subtle);
+    object-fit: cover;
+    object-position: center 20%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Section Headings */
+  .section-heading {
+    font-size: 1.45rem;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-heading.no-margin {
+    margin-bottom: 0;
+  }
+
+  .section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+  }
+
+  .section-view-all {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    padding-bottom: 2px;
+  }
+
+  .section-view-all:hover {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
+
+  /* About Section */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .about-narrative p {
+    font-size: 0.98rem;
+    color: var(--text);
+    line-height: 1.72;
+    margin-bottom: 1.15rem;
+  }
+
+  .about-narrative p:last-child {
+    margin-bottom: 0;
+  }
+
+  .quick-facts {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem 1.15rem;
+  }
+
+  .facts-title {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .facts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 0;
+  }
+
+  .fact-item dt {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.15rem;
+  }
+
+  .fact-item dd {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .fact-highlight {
+    color: var(--accent) !important;
+  }
+
+  /* Skills Columns (3 columns, no bars or percentages) */
+  .skills-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .skill-column {
+    background: transparent;
+  }
+
+  .skill-cat-title {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-plain-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .skill-plain-list li {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    padding: 0.3rem 0;
+    border-bottom: 1px dotted var(--border-subtle);
+    line-height: 1.4;
+  }
+
+  .skill-plain-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Education Timeline */
+  .education-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .edu-row {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .edu-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .edu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .edu-degree-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .edu-degree {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .edu-school {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .edu-period {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .edu-meta-tag {
+    margin-top: 0.4rem;
+  }
+
+  .score-badge {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .coursework-block {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.15rem 1.25rem;
+  }
+
+  .coursework-title {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .coursework-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .coursework-tags li {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    margin: 0;
+  }
+
+  /* Currently Learning */
+  .learning-intro {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .learning-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .learning-item {
+    padding: 0.85rem 1rem;
+    background: var(--bg-subtle);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .learning-item strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 0.95rem;
+  }
+
+  /* Selected Work Cards (Cards used ONLY for selected projects and achievements) */
+  .selected-projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-card {
+    cursor: pointer;
+  }
+
+  .project-card:hover .card-title {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .card-title-group {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+    letter-spacing: -0.01em;
+    transition: color 0.15s ease;
+  }
+
+  .schematic-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .card-category {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .card-desc {
+    font-size: 0.94rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Achievements Cards */
+  .achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .achieve-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .achieve-title-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .achieve-title {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .achieve-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .achieve-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .achieve-desc {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .achieve-link-wrap {
+    margin-top: 0.5rem;
+  }
+
+  .cert-link {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .cert-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Contact Section (unboxed plain rhythm — no card behind everything) */
+  .contact-lead {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .contact-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .channel-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-width: 90px;
+  }
+
+  .channel-main {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .channel-anchor {
+    font-size: 0.95rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .channel-anchor:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .btn-copy {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    padding: 0.2rem 0.55rem;
+    line-height: 1.2;
+    border-radius: 3px;
+  }
+
+  .arrow {
+    display: inline-block;
+    font-size: 0.85em;
+  }
+
+  /* Responsive Adjustments (Unified 768px breakpoint) */
+  @media (max-width: 768px) {
+    .hero-content {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .hero-photo-img,
+    .hero-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+    }
+
+    .hero-name {
+      font-size: 2.2rem;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .skills-columns {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .edu-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+    }
+
+    .achieve-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .contact-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    const copyBtn = document.getElementById('copy-email-btn');
+    const copyText = document.getElementById('copy-email-text');
+    if (!copyBtn || !copyText) return;
+
+    const email = 'krishquanta+pf@gmail.com';
+
+    copyBtn.addEventListener('click', async () => {
+      let succeeded = false;
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(email);
+          succeeded = true;
+        } catch (err) {}
+      }
+      if (!succeeded) {
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = email;
+          textArea.style.position = 'fixed';
+          textArea.style.left = '-9999px';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          succeeded = document.execCommand('copy');
+          document.body.removeChild(textArea);
+        } catch (err) {}
+      }
+
+      if (succeeded) {
+        copyText.textContent = 'Copied!';
+        setTimeout(() => {
+          copyText.textContent = 'Copy';
+        }, 2000);
+      } else {
+        copyText.textContent = 'Failed';
+        setTimeout(() => {
+          copyText.textContent = 'Copy';
+        }, 2000);
+      }
+    });
+  })();
+</script>

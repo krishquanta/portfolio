@@ -1,0 +1,196 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { siteMeta } from '../data/siteMeta';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  year: string;
+  tags: string[];
+  github?: string;
+  demo?: string;
+}
+
+const { title, description, category, year, tags, github, demo } = Astro.props;
+---
+
+<BaseLayout title={`${title} — ${siteMeta.name}`} description={description}>
+  <article class="project-detail">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/projects" class="back-link">← All projects</a>
+    </nav>
+
+    <header class="detail-header">
+      <div class="meta-row">
+        <span class="category-badge">{category}</span>
+        <span class="year-badge">{year}</span>
+      </div>
+
+      <h1 class="detail-title">{title}</h1>
+      <p class="detail-lead">{description}</p>
+
+      <div class="tags-container">
+        {tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+
+      <div class="links-row">
+        {github && (
+          <a href={github} target="_blank" rel="noopener noreferrer" class="btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            <span>GitHub Repository</span>
+          </a>
+        )}
+        {demo && (
+          <a href={demo} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>Live Demo</span>
+          </a>
+        )}
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <section class="detail-prose">
+      <slot />
+    </section>
+
+    <div class="divider"></div>
+
+    <footer class="detail-footer">
+      <a href="/projects" class="back-link">← Back to all projects</a>
+      <a href="#main-content" class="top-link">↑ Back to top</a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .project-detail {
+    max-width: var(--max-w);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link, .top-link {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .back-link:hover, .top-link:hover {
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  .detail-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .year-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  .detail-title {
+    font-size: 2.2rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .detail-lead {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .links-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+  }
+
+  .detail-prose {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .detail-prose :global(h2) {
+    font-size: 1.35rem;
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .detail-prose :global(h3) {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-prose :global(p) {
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  .detail-prose :global(ul), .detail-prose :global(ol) {
+    margin-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .detail-prose :global(li) {
+    margin-bottom: 0.4rem;
+  }
+
+  .detail-prose :global(pre) {
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  .detail-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
+</style>

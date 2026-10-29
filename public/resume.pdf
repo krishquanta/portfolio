@@ -1,0 +1,108 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R /F3 7 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2195 >>
+stream
+BT
+/F1 20 Tf
+50 740 Td
+(Mohnish Krishna S) Tj
+0 -22 Td
+/F2 11 Tf
+(B.E. EEE Undergraduate  |  Embedded Systems, Automation, Circuits) Tj
+0 -18 Td
+/F3 9 Tf
+(Chennai, India  |  krishquanta+pf@gmail.com  |  github.com/krishquanta  |  linkedin.com/in/krishquanta) Tj
+0 -24 Td
+/F1 12 Tf
+(EDUCATION) Tj
+0 -15 Td
+/F2 10 Tf
+(Bachelor of Engineering (B.E.) in Electrical & Electronics Engineering (2026 - 2030)) Tj
+0 -13 Td
+/F3 9 Tf
+(Dhaanish Ahmed College of Engineering, Chennai  |  First Year Undergraduate) Tj
+0 -12 Td
+(Coursework: Circuit Analysis, Linear Algebra, Programming in C/Python, Engineering Physics) Tj
+0 -14 Td
+/F2 9.5 Tf
+(Higher Secondary (12th TN State Board) - 80%  |  Secondary School (10th TN Matriculation) - 94.8%) Tj
+0 -22 Td
+/F1 12 Tf
+(TECHNICAL SKILLS) Tj
+0 -15 Td
+/F2 9.5 Tf
+(Electronics: Circuit Analysis, KVL/KCL, Arduino, Tinkercad Simulation, Sensors (ADC/Current)) Tj
+0 -13 Td
+(Programming: Python, C, C++, Bash Scripting, Basic Assembly) Tj
+0 -13 Td
+(Tools & OS: Git, Docker, Linux, Playwright, Valgrind, GDB) Tj
+0 -22 Td
+/F1 12 Tf
+(FEATURED PROJECTS) Tj
+0 -15 Td
+/F2 9.5 Tf
+(IoT Power & Energy Telemetry Node (2026) - Embedded C++, ESP32, Tinkercad, MQTT) Tj
+0 -12 Td
+/F3 8.5 Tf
+(Isolated 230V AC energy monitor with Hall-effect sensing and dual-core FreeRTOS firmware.) Tj
+0 -14 Td
+/F2 9.5 Tf
+(Shop Cold Outreach Pipeline (2026) - Python, FastAPI, Docker, Celery, Redis) Tj
+0 -12 Td
+/F3 8.5 Tf
+(Distributed lead aggregation service with token-bucket rate limiting across 10,000+ dispatches.) Tj
+0 -14 Td
+/F2 9.5 Tf
+(BlueLink AI OBD-II Telematics Engine (2026) - Python, PyTorch, ChromaDB, FastAPI) Tj
+0 -12 Td
+/F3 8.5 Tf
+(SAE J1979 telemetry parser with physical rule-boundary checks and contextual RAG retrieval.) Tj
+0 -22 Td
+/F1 12 Tf
+(ACHIEVEMENTS & HONORS) Tj
+0 -15 Td
+/F2 9.5 Tf
+(ARCANE 2K26 Code Canvas - 1st Place Winner (Rs 2,000 Cash Prize, Web Dev vs 4th Years)) Tj
+0 -13 Td
+(VELSATHON'26 - Participant: School of Computing Sciences, VISTAS Pallavaram) Tj
+0 -13 Td
+(Smart India Hackathon (SIH 2026) - Internal Round Shortlisted: Distributed sensor telemetry) Tj
+0 -13 Td
+(Inter-Collegiate Circuit Debugging Challenge (2026) - 1st Place (Speed Analysis)) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000267 00000 n 
+0000002514 00000 n 
+0000002589 00000 n 
+0000002659 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+2737
+%%EOF

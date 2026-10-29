@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #FAFAF8; }
+      .grid-dot { fill: #E5E5DE; }
+      .box { fill: #F3F3EE; stroke: #181816; stroke-width: 1.5; rx: 4px; }
+      .box-accent { fill: #1B3C48; stroke: #1B3C48; stroke-width: 1.5; rx: 4px; }
+      .wire { stroke: #181816; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-accent { stroke: #1B3C48; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .wire-gnd { stroke: #888882; stroke-width: 1.5; stroke-dasharray: 4,3; fill: none; }
+      .wire-ac { stroke: #A34832; stroke-width: 2.2; fill: none; }
+      .txt-title { font-family: 'Newsreader', Georgia, serif; font-size: 15px; font-weight: 600; fill: #181816; }
+      .txt-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; fill: #181816; }
+      .txt-mono-accent { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600; fill: #1B3C48; }
+      .txt-mono-light { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; fill: #FAFAF8; }
+      .txt-mono-dim { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; fill: #62625C; }
+      .pin { fill: #181816; }
+      .node-dot { fill: #1B3C48; }
+    </style>
+  </defs>
+
+  <!-- Background Base with subtle breadboard dot pattern -->
+  <rect width="800" height="420" class="bg" rx="8" />
+  <rect width="796" height="416" x="2" y="2" fill="none" stroke="#E5E5DE" stroke-width="1.5" rx="7" />
+
+  <!-- Title Badge -->
+  <g transform="translate(24, 20)">
+    <text x="0" y="16" class="txt-title">Tinkercad Simulated Breadboard Circuit — AC Power Telemetry Node</text>
+    <text x="0" y="32" class="txt-mono-dim">Schematic &amp; Signal Conditioning Simulation · 230V Mains Isolated · ADC Multi-Point Calibration</text>
+  </g>
+
+  <!-- AC Mains Section -->
+  <g transform="translate(30, 80)">
+    <!-- AC Mains Block -->
+    <rect x="0" y="0" width="130" height="110" class="box" />
+    <rect x="0" y="0" width="130" height="24" fill="#E8E8DF" stroke="#181816" stroke-width="1.5" rx="4" />
+    <text x="65" y="16" text-anchor="middle" class="txt-mono-accent">230V AC MAINS</text>
+    <text x="65" y="52" text-anchor="middle" class="txt-mono">Phase (L)</text>
+    <text x="65" y="86" text-anchor="middle" class="txt-mono">Neutral (N)</text>
+    <circle cx="130" cy="48" r="4" class="pin" />
+    <circle cx="130" cy="82" r="4" class="pin" />
+  </g>
+
+  <!-- ACS712 Current Sensor Block -->
+  <g transform="translate(210, 70)">
+    <rect x="0" y="0" width="160" height="125" class="box" />
+    <rect x="0" y="0" width="160" height="24" class="box-accent" />
+    <text x="80" y="16" text-anchor="middle" class="txt-mono-light">ACS712 (Hall Current)</text>
+    <text x="14" y="48" class="txt-mono">IP+ [Mains In]</text>
+    <text x="14" y="74" class="txt-mono">IP- [To AC Load]</text>
+    <line x1="0" y1="90" x2="160" y2="90" stroke="#E5E5DE" stroke-width="1" />
+    <text x="14" y="108" class="txt-mono-dim">VOUT: 185mV/A</text>
+    <circle cx="0" cy="45" r="4" class="pin" />
+    <circle cx="160" cy="72" r="4" class="pin" />
+    <circle cx="160" cy="104" r="4" class="pin" />
+  </g>
+
+  <!-- ZMPT101B Voltage Transformer Block -->
+  <g transform="translate(210, 230)">
+    <rect x="0" y="0" width="160" height="135" class="box" />
+    <rect x="0" y="0" width="160" height="24" class="box-accent" />
+    <text x="80" y="16" text-anchor="middle" class="txt-mono-light">ZMPT101B (Voltage PT)</text>
+    <text x="14" y="48" class="txt-mono">L/N Secondary</text>
+    <text x="14" y="72" class="txt-mono">Op-Amp Trimmer</text>
+    <line x1="0" y1="88" x2="160" y2="88" stroke="#E5E5DE" stroke-width="1" />
+    <text x="14" y="106" class="txt-mono-dim">1.65V DC Offset</text>
+    <text x="14" y="122" class="txt-mono-dim">VOUT: Sinusoidal</text>
+    <circle cx="0" cy="45" r="4" class="pin" />
+    <circle cx="160" cy="104" r="4" class="pin" />
+  </g>
+
+  <!-- AC Load Block -->
+  <g transform="translate(420, 70)">
+    <rect x="0" y="0" width="110" height="85" class="box" />
+    <rect x="0" y="0" width="110" height="22" fill="#E8E8DF" stroke="#181816" stroke-width="1.5" rx="4" />
+    <text x="55" y="15" text-anchor="middle" class="txt-mono">AC LOAD</text>
+    <text x="55" y="46" text-anchor="middle" class="txt-mono-accent">100W / 230V</text>
+    <text x="55" y="66" text-anchor="middle" class="txt-mono-dim">Resistive / Ind</text>
+    <circle cx="0" cy="45" r="4" class="pin" />
+    <circle cx="55" cy="85" r="4" class="pin" />
+  </g>
+
+  <!-- ESP32 Microcontroller Core -->
+  <g transform="translate(420, 195)">
+    <rect x="0" y="0" width="175" height="175" class="box" style="stroke-width: 2;" />
+    <rect x="0" y="0" width="175" height="26" class="box-accent" />
+    <text x="87" y="17" text-anchor="middle" class="txt-mono-light">ESP32 Dual-Core MCU</text>
+    
+    <text x="14" y="48" class="txt-mono-accent">GPIO 34 (ADC1_CH6)</text>
+    <text x="14" y="64" class="txt-mono-dim">Current Sense (2.5kHz ISR)</text>
+
+    <text x="14" y="90" class="txt-mono-accent">GPIO 35 (ADC1_CH7)</text>
+    <text x="14" y="106" class="txt-mono-dim">Voltage Sense (True-RMS)</text>
+
+    <line x1="0" y1="120" x2="175" y2="120" stroke="#E5E5DE" stroke-width="1" />
+    <text x="14" y="140" class="txt-mono">I2C: GPIO 21 (SDA)</text>
+    <text x="14" y="158" class="txt-mono">I2C: GPIO 22 (SCL)</text>
+
+    <circle cx="0" cy="45" r="4" class="pin" />
+    <circle cx="0" cy="87" r="4" class="pin" />
+    <circle cx="175" cy="136" r="4" class="pin" />
+    <circle cx="175" cy="154" r="4" class="pin" />
+  </g>
+
+  <!-- OLED Display Screen -->
+  <g transform="translate(640, 205)">
+    <rect x="0" y="0" width="135" height="155" class="box" />
+    <rect x="8" y="10" width="119" height="90" rx="3" fill="#181816" stroke="#1B3C48" stroke-width="1.5" />
+    <!-- OLED Text readout -->
+    <text x="16" y="28" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8CB8C7">RMS V: 230.4 V</text>
+    <text x="16" y="44" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8CB8C7">RMS I:  0.43 A</text>
+    <text x="16" y="60" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8CB8C7">PWR:   99.1 W</text>
+    <text x="16" y="76" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8CB8C7">PF :   0.98</text>
+    <text x="16" y="92" font-family="'JetBrains Mono', monospace" font-size="8" fill="#D9A07A">STATUS: CALIBRATED</text>
+
+    <text x="67" y="122" text-anchor="middle" class="txt-mono">0.96" OLED</text>
+    <text x="67" y="140" text-anchor="middle" class="txt-mono-dim">SSD1306 (I2C)</text>
+    <circle cx="0" cy="126" r="4" class="pin" />
+    <circle cx="0" cy="144" r="4" class="pin" />
+  </g>
+
+  <!-- Wire Connections -->
+  <!-- Phase wire from mains to ACS712 -->
+  <path d="M160 125 L185 125 L185 115 L210 115" class="wire-ac" />
+  <!-- Current sensor out to load -->
+  <path d="M370 142 L420 115" class="wire-ac" />
+  <!-- Neutral wire from mains to ZMPT101B and Load -->
+  <path d="M160 162 L185 162 L185 275 L210 275" class="wire-gnd" />
+  <!-- Return from Load to neutral line -->
+  <path d="M475 155 L475 180 L185 180" class="wire-gnd" />
+
+  <!-- ACS712 analog signal to ESP32 GPIO 34 -->
+  <path d="M370 174 L395 174 L395 240 L420 240" class="wire-accent" />
+  <!-- ZMPT101B analog signal to ESP32 GPIO 35 -->
+  <path d="M370 334 L395 334 L395 282 L420 282" class="wire-accent" />
+
+  <!-- I2C SDA & SCL from ESP32 to OLED -->
+  <path d="M595 331 L640 331" class="wire" />
+  <path d="M595 349 L640 349" class="wire" />
+
+  <!-- Test Points & Callouts -->
+  <g transform="translate(640, 75)">
+    <rect x="0" y="0" width="135" height="95" fill="#FAFAF8" stroke="#E5E5DE" stroke-width="1.5" rx="4" />
+    <text x="10" y="18" class="txt-mono-accent">SIMULATION METRICS</text>
+    <text x="10" y="36" class="txt-mono-dim">Sampling: 2.5 kHz</text>
+    <text x="10" y="52" class="txt-mono-dim">Samples/Cycle: 50</text>
+    <text x="10" y="68" class="txt-mono-dim">ADC Offset: 1.65V</text>
+    <text x="10" y="84" class="txt-mono-dim">Error: &lt; 1.2% RMS</text>
+  </g>
+</svg>
