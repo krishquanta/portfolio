@@ -340,7 +340,7 @@ const recentAchievements = achievements.slice(0, 3);
           <a href={`mailto:${siteMeta.email}`} class="channel-anchor">
             {siteMeta.email}
           </a>
-          <button id="copy-email-btn" class="btn btn-copy" type="button" aria-label="Copy email address">
+          <button id="copy-email-btn" class="btn btn-copy" type="button" aria-label="Copy email address" data-email={siteMeta.email}>
             <span id="copy-email-text">Copy</span>
           </button>
         </div>
@@ -350,7 +350,7 @@ const recentAchievements = achievements.slice(0, 3);
         <span class="channel-label">LinkedIn</span>
         <div class="channel-main">
           <a href={siteMeta.linkedin} target="_blank" rel="noopener noreferrer" class="channel-anchor">
-            linkedin.com/in/krishquanta <span class="arrow" aria-hidden="true">↗</span>
+            linkedin.com/in/mohnish-krishna <span class="arrow" aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
@@ -987,7 +987,7 @@ const recentAchievements = achievements.slice(0, 3);
     const copyText = document.getElementById('copy-email-text');
     if (!copyBtn || !copyText) return;
 
-    const email = 'krishquanta+pf@gmail.com';
+    const email = copyBtn.getAttribute('data-email') || 'krishquanta+pf@gmail.com';
 
     copyBtn.addEventListener('click', async () => {
       let succeeded = false;

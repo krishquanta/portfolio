@@ -19,7 +19,7 @@ export const siteMeta: SiteMeta = {
   bio: "First-year Electrical and Electronics Engineering undergraduate at Dhaanish Ahmed College of Engineering, passionate about embedded systems, circuit prototyping, and workflow automation.",
   email: "krishquanta+pf@gmail.com",
   github: "https://github.com/krishquanta",
-  linkedin: "https://linkedin.com/in/krishquanta",
+  linkedin: "https://www.linkedin.com/in/mohnish-krishna",
   location: "Chennai, India",
   college: "Dhaanish Ahmed College of Engineering, Chennai",
   degree: "B.E. in Electrical & Electronics Engineering (EEE)",

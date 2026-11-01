@@ -8,6 +8,10 @@ export default defineConfig({
   },
   redirects: {
     '/about': '/#about',
+    '/skills': '/#skills',
+    '/education': '/#education',
+    '/learning': '/#learning',
+    '/work': '/#work',
     '/contact': '/#contact',
   },
 });
